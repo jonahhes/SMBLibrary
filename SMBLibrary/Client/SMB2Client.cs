@@ -762,6 +762,14 @@ namespace SMBLibrary.Client
             }
         }
 
+        public SMBTransportType Transport
+        {
+            get
+            {
+                return m_transport;
+            }
+        }
+
         public bool IsConnected
         {
             get
