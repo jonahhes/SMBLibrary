@@ -248,7 +248,7 @@ namespace SMBLibrary.Client
 
         public NTStatus Login(string domainName, string userName, string password, AuthenticationMethod authenticationMethod)
         {
-            string spn = string.Format("cifs/{0}", m_serverName);
+            string spn = CreateSpn(m_serverName);
             NTLMAuthenticationClient authenticationClient = new NTLMAuthenticationClient(domainName, userName, password, spn, authenticationMethod);
             return Login(authenticationClient);
         }
@@ -812,6 +812,11 @@ namespace SMBLibrary.Client
             {
                 m_isConnected = false;
             }
+        }
+
+        private static string CreateSpn(string serverAddress)
+        {
+            return $"cifs/{serverAddress}";
         }
     }
 }
